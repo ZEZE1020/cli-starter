@@ -1,0 +1,34 @@
+Course Notes — CLI Starter
+==========================
+
+Lesson 1: CLI Basics
+- pwd shows your current location
+- whoami prints your username
+- echo prints text to the terminal
+- clear cleans up the screen (Ctrl+L is faster)
+- Tab auto-completes file and command names
+
+Lesson 2: Navigation & File Operations
+- ls lists files; ls -la shows hidden files too
+- cd changes directory; cd ~ always goes home
+- mkdir creates directories; mkdir -p creates nested ones
+- touch creates empty files
+- cat prints a file's contents
+- cp copies files; mv moves or renames them
+- rm deletes files — be careful, there is no undo!
+- grep searches inside files; find locates files by name
+
+Lesson 3: Bootstrap a Project
+- git init starts a repository
+- npm init creates a package.json
+- git add . stages all changes
+- git commit -m "..." saves a snapshot
+- git push uploads to GitHub
+
+Lesson 4: Create Your Portfolio
+- GitHub Pages hosts static sites for free
+- gh-pages npm package automates deployment
+- Custom domains can be linked via a CNAME file
+
+TODO: review keyboard shortcuts before Lesson 1 quiz
+TODO: practice grep and find before Lesson 2 exercise

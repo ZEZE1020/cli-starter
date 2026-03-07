@@ -1,0 +1,10 @@
+This is the original file.
+
+You can copy it with:
+  cp original.txt copy.txt
+
+Or move it with:
+  mv original.txt moved.txt
+
+After moving, original.txt will no longer exist here.
+Re-clone the practice folder to get it back.

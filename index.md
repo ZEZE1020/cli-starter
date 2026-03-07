@@ -62,6 +62,20 @@ Before you start, make sure you have these tools installed:
 
 ---
 
+## 🗂️ Practice Repository
+
+Lesson 2 requires real files to practise commands like `cat`, `grep`, `cp`, `mv`, and `rm`.  
+The course ships a ready-made **`practice/`** folder you can clone in one command:
+
+```bash
+git clone https://github.com/ZEZE1020/cli-starter.git
+cd cli-starter/practice
+```
+
+Full instructions and an alternative self-setup script are at the top of [Lesson 2](docs/02-navigation-and-files).
+
+---
+
 > 💡 **Tip:** Every lesson includes side-by-side examples for Mac and Windows (Git Bash). The commands are almost identical — differences are clearly called out.
 
 [Start Lesson 1 →](docs/01-cli-basics)

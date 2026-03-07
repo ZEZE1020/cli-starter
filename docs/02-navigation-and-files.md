@@ -11,6 +11,117 @@ nav_order: 3
 
 ---
 
+## 📂 Get the Practice Files
+
+Several commands in this lesson (`cat`, `head`, `tail`, `grep`, `cp`, `mv`, `rm`) need real files to work on. Set up a practice folder **before** you start — choose whichever option suits you.
+
+### Option A — Clone the course repository (recommended)
+
+This gives you all the sample files in one step and lets you reset at any time by re-cloning.
+
+```bash
+# Go to a safe working area
+cd ~
+
+# Clone the course repo
+git clone https://github.com/ZEZE1020/cli-starter.git
+
+# Enter the ready-made practice folder
+cd cli-starter/practice
+```
+
+You now have:
+```
+practice/
+├── README.md        ← multi-line text — great for cat, head, tail, grep
+├── app.log          ← simulated log file — great for tail, grep -i
+├── file.txt         ← plain text — great for grep, cp, mv
+├── notes.txt        ← course notes — great for grep -n, grep -r
+├── original.txt     ← ready to copy with cp
+├── old-name.txt     ← ready to rename with mv
+└── src/
+    ├── app.js       ← JavaScript with functions and TODOs
+    ├── utils.js     ← more JS functions and TODOs
+    └── style.css    ← CSS file for wildcard exercises
+```
+
+> 💡 **Messed up a file?** Just re-clone and you're back to a clean slate:
+> ```bash
+> cd ~
+> rm -rf cli-starter
+> git clone https://github.com/ZEZE1020/cli-starter.git
+> cd cli-starter/practice
+> ```
+
+---
+
+### Option B — Create the practice files yourself
+
+Prefer to build from scratch? Run the commands below to create an equivalent set of files:
+
+```bash
+# Create and enter a practice folder
+cd ~
+mkdir -p cli-practice/src
+cd cli-practice
+
+# A multi-line README (good for head / tail / cat)
+cat > README.md << 'EOF'
+# Practice Project
+
+This file is here so you can try out cat, head, tail, less and grep.
+
+Line 1: The quick brown fox jumps over the lazy dog.
+Line 2: Hello, CLI learner!
+Line 3: Learning the terminal is a superpower.
+Line 4: TODO: practise grep on this file.
+Line 5: Every expert was once a beginner.
+Line 6: Ctrl+C cancels a running command.
+Line 7: Tab auto-completes file names.
+Line 8: Use cd .. to go up one directory.
+Line 9: pwd shows where you are right now.
+Line 10: git init starts a new repository.
+EOF
+
+# A log file (good for tail -f, grep -i "error")
+cat > app.log << 'EOF'
+2026-03-01 08:00:12 INFO  Server started on port 3000
+2026-03-01 08:01:10 WARN  Slow query detected
+2026-03-01 08:01:20 ERROR Failed to send email: SMTP refused
+2026-03-01 08:02:00 INFO  GET /api/orders 200 OK
+2026-03-01 08:03:30 ERROR Database connection lost
+2026-03-01 08:03:37 INFO  Database reconnected successfully
+2026-03-01 08:05:05 INFO  POST /api/login 200 OK
+EOF
+
+# Plain text files for cp / mv / grep
+echo "Hello, CLI learner! This file is great for grep and cp." > file.txt
+echo "TODO: rename this file using mv." > old-name.txt
+echo "Copy me with: cp original.txt copy.txt" > original.txt
+
+# Source files with functions and TODOs (for grep -r and find)
+cat > src/app.js << 'EOF'
+function greet(name) {
+  return "Hello, " + name + "!";
+}
+// TODO: add more functions here
+function add(a, b) { return a + b; }
+EOF
+
+cat > src/utils.js << 'EOF'
+function formatDate(date) { return new Date(date).toISOString().slice(0,10); }
+// TODO: add unit tests
+function isEmpty(v) { return v === null || v === undefined || v === ''; }
+EOF
+
+echo "/* TODO: add responsive styles */" > src/style.css
+
+# Verify what you created
+find . | sort
+```
+
+---
+
 ## The File System — A Quick Mental Model
 
 Think of your file system as a **tree of folders**. Every file lives at an *absolute path* starting from the root:
@@ -118,10 +229,14 @@ echo "More content" >> README.md     # append to existing file
 
 ## Viewing File Contents
 
+> 💡 **Using practice files?** Make sure you're inside the practice folder (`cd ~/cli-starter/practice` or `cd ~/cli-practice`) before running the examples below.
+
 ### `cat` — Print File Contents
 
 ```bash
 cat README.md
+cat file.txt
+cat notes.txt
 ```
 
 ### `less` — Scroll Through Long Files
@@ -129,6 +244,7 @@ cat README.md
 ```bash
 less README.md
 # Use arrow keys to scroll, q to quit
+less app.log
 ```
 
 ### `head` / `tail` — First or Last Lines
@@ -146,7 +262,7 @@ tail -f app.log          # follow a file in real-time (Ctrl+C to stop)
 ### `cp` — Copy
 
 ```bash
-cp original.txt copy.txt          # copy a file
+cp original.txt copy.txt          # copy a file (original.txt is in the practice folder)
 cp -r src/ backup/                # copy an entire directory (-r = recursive)
 cp *.html dist/                   # copy all .html files into dist/
 ```
@@ -154,8 +270,8 @@ cp *.html dist/                   # copy all .html files into dist/
 ### `mv` — Move or Rename
 
 ```bash
-mv old-name.txt new-name.txt      # rename a file
-mv index.html src/                # move a file into a folder
+mv old-name.txt new-name.txt      # rename a file (old-name.txt is in the practice folder)
+mv file.txt src/                  # move a file into a folder
 mv src/ app/                      # rename a folder
 ```
 
@@ -172,6 +288,14 @@ rm -rf dist/                 # force delete without confirmation prompts
 ```
 
 > ⚠️ **Warning:** There is **no Recycle Bin** in the terminal. `rm` permanently deletes files. Double-check before running `rm -rf`!
+
+> 💡 **Using the practice folder?** If you delete a practice file by accident, reset with:
+> ```bash
+> cd ~
+> rm -rf cli-starter
+> git clone https://github.com/ZEZE1020/cli-starter.git
+> cd cli-starter/practice
+> ```
 
 ---
 
@@ -226,19 +350,21 @@ src/
 ### `find` — Find Files by Name
 
 ```bash
-find . -name "*.html"          # find all HTML files in current directory
+find . -name "*.js"            # find all JS files in current directory (try in practice/)
+find . -name "*.md"            # find all Markdown files
 find ~ -name "README.md"       # find README.md files in home directory
 find . -type d                 # find all directories
-find . -type f -name "*.js"    # find all JS files
+find . -type f -name "*.js"    # find all JS files (practice/src has two)
 ```
 
 ### `grep` — Search Inside Files
 
 ```bash
-grep "hello" file.txt                  # search for "hello" in a file
+grep "hello" file.txt                  # search for "hello" in file.txt
 grep -r "TODO" .                       # search recursively in all files
-grep -rn "function" src/               # show line numbers too
-grep -i "error" app.log                # case-insensitive search
+grep -rn "function" src/               # show line numbers too (src/ has JS files)
+grep -i "error" app.log                # case-insensitive search in the log file
+grep -n "TODO" notes.txt               # show which lines have TODOs
 ```
 
 ---
@@ -261,6 +387,7 @@ rm -rf dist/**       # everything inside dist/
 
 ## ✅ Lesson 2 Checklist
 
+- [ ] Set up practice files (cloned the repo or ran the self-setup script)
 - [ ] Used `ls -la` to list files with details
 - [ ] Navigated with `cd`, `cd ..`, and `cd ~`
 - [ ] Created a folder with `mkdir`
