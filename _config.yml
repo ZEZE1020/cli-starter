@@ -1,0 +1,29 @@
+title: CLI Starter Course
+description: >-
+  A beginner-friendly guide to the Command Line Interface for Mac and Windows
+  (Git Bash) users — learn the basics, bootstrap a project, and build your portfolio.
+baseurl: "/cli-starter"
+url: "https://zeze1020.github.io"
+
+theme: minima
+
+header_pages:
+  - index.md
+  - docs/01-cli-basics.md
+  - docs/02-navigation-and-files.md
+  - docs/03-bootstrap-project.md
+  - docs/04-create-portfolio.md
+
+minima:
+  skin: dark
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+markdown: kramdown
+highlighter: rouge
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
