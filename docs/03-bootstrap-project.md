@@ -17,8 +17,8 @@ Make sure these are installed before continuing:
 
 | Tool | Check command | Install link |
 |------|---------------|--------------|
-| **Git** | `git --version` | [git-scm.com](https://git-scm.com/) |
-| **Node.js & npm** | `node -v && npm -v` | [nodejs.org](https://nodejs.org) (LTS) |
+| **Git** | `git --version` | [git-scm.com/downloads ↗](https://git-scm.com/downloads) · Windows: [gitforwindows.org ↗](https://gitforwindows.org/) |
+| **Node.js & npm** | `node -v && npm -v` | [nodejs.org/en/download ↗](https://nodejs.org/en/download/) (choose the **LTS** release) |
 
 ```bash
 # Verify both are available

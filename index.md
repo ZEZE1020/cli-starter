@@ -51,10 +51,14 @@ By the end you will be able to:
 
 Before you start, make sure you have these tools installed:
 
-- **Mac** — Terminal is built-in (search for *Terminal* in Spotlight)
-- **Windows** — Install [Git for Windows](https://gitforwindows.org/) which includes **Git Bash**
-- **Node.js / npm** — Download from [nodejs.org](https://nodejs.org) (LTS version recommended)
-- **A GitHub account** — Sign up free at [github.com](https://github.com)
+| Tool | Mac | Windows |
+|------|-----|---------|
+| **Terminal / Shell** | Built-in — search *Terminal* in Spotlight | Install **Git Bash** via [Git for Windows ↗](https://gitforwindows.org/) |
+| **Git** | Included with Xcode Command Line Tools (`git --version` to prompt install) | Included with [Git for Windows ↗](https://gitforwindows.org/) |
+| **Node.js & npm** | [Download LTS from nodejs.org ↗](https://nodejs.org/en/download/) | [Download LTS from nodejs.org ↗](https://nodejs.org/en/download/) |
+| **GitHub account** | [Sign up free at github.com ↗](https://github.com/signup) | [Sign up free at github.com ↗](https://github.com/signup) |
+
+> 💡 **Not sure if something is already installed?** Open your terminal and run `git --version`, `node -v`, and `npm -v`. If a version number appears, you're good to go!
 
 ---
 
