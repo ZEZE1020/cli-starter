@@ -1,12 +1,19 @@
-# CLI Practice Repository
+# CLI Practice Files
 
-This folder contains sample files to practise the commands taught in
+This folder contains sample files for practicing the commands taught in
 **Lesson 2 — Navigation & File Operations**.
 
 ## How to use
 
-Clone or copy this `practice/` folder to your home directory and follow
-along with the lesson examples.
+Use `npx degit` to download **only these exercise files** into your home directory:
+
+```bash
+cd ~
+npx degit ZEZE1020/cli-starter/practice cli-practice
+cd cli-practice
+```
+
+This downloads just the exercise files — no Ruby source code, no course docs, no `.git` history.
 
 ## Contents
 
@@ -25,12 +32,14 @@ along with the lesson examples.
 
 ## Tip
 
-After practising destructive commands (`rm`, `mv`) you can reset the
-folder at any time by re-cloning:
+After practicing destructive commands (`rm`, `mv`) you can reset the
+folder at any time by re-downloading:
 
 ```bash
-git clone https://github.com/ZEZE1020/cli-starter.git
-cd cli-starter/practice
+cd ~
+rm -rf cli-practice
+npx degit ZEZE1020/cli-starter/practice cli-practice
+cd cli-practice
 ```
 
 Happy learning! 🚀

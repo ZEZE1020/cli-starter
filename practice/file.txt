@@ -14,4 +14,4 @@ Try running:
   grep -i "TODO" file.txt
   grep -n "fox" file.txt
 
-Happy practising!
+Happy practicing!

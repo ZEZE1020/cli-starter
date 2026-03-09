@@ -62,17 +62,17 @@ Before you start, make sure you have these tools installed:
 
 ---
 
-## 🗂️ Practice Repository
+## 🗂️ Practice Files
 
-Lesson 2 requires real files to practise commands like `cat`, `grep`, `cp`, `mv`, and `rm`.  
-The course ships a ready-made **`practice/`** folder you can clone in one command:
+Lesson 2 requires real files to practice commands like `cat`, `grep`, `cp`, `mv`, and `rm`.  
+Download **only the exercise files** (no course source code) in one command:
 
 ```bash
-git clone https://github.com/ZEZE1020/cli-starter.git
-cd cli-starter/practice
+npx degit ZEZE1020/cli-starter/practice cli-practice
+cd cli-practice
 ```
 
-Full instructions and an alternative self-setup script are at the top of [Lesson 2](docs/02-navigation-and-files).
+> 💡 `npx` ships with Node.js. Full instructions and a self-setup alternative are at the top of [Lesson 2](docs/02-navigation-and-files).
 
 ---
 

@@ -15,24 +15,26 @@ nav_order: 3
 
 Several commands in this lesson (`cat`, `head`, `tail`, `grep`, `cp`, `mv`, `rm`) need real files to work on. Set up a practice folder **before** you start — choose whichever option suits you.
 
-### Option A — Clone the course repository (recommended)
+### Option A — Download only the practice files (recommended)
 
-This gives you all the sample files in one step and lets you reset at any time by re-cloning.
+Use `npx degit` to download **just the exercise files** from the course repository — no course source code, no Ruby files, no `.git` history.
+
+> 💡 `npx` ships with Node.js (a prerequisite for Lesson 3+). If you haven't installed it yet, see the [Prerequisites](../index#prerequisites) on the home page.
 
 ```bash
 # Go to a safe working area
 cd ~
 
-# Clone the course repo
-git clone https://github.com/ZEZE1020/cli-starter.git
+# Download only the practice files into a new folder called cli-practice
+npx degit ZEZE1020/cli-starter/practice cli-practice
 
-# Enter the ready-made practice folder
-cd cli-starter/practice
+# Enter the folder
+cd cli-practice
 ```
 
-You now have:
+You now have a clean folder containing only the exercise files:
 ```
-practice/
+cli-practice/
 ├── README.md        ← multi-line text — great for cat, head, tail, grep
 ├── app.log          ← simulated log file — great for tail, grep -i
 ├── file.txt         ← plain text — great for grep, cp, mv
@@ -45,19 +47,19 @@ practice/
     └── style.css    ← CSS file for wildcard exercises
 ```
 
-> 💡 **Messed up a file?** Just re-clone and you're back to a clean slate:
+> 💡 **Messed up a file?** Delete the folder and re-download in seconds:
 > ```bash
 > cd ~
-> rm -rf cli-starter
-> git clone https://github.com/ZEZE1020/cli-starter.git
-> cd cli-starter/practice
+> rm -rf cli-practice
+> npx degit ZEZE1020/cli-starter/practice cli-practice
+> cd cli-practice
 > ```
 
 ---
 
 ### Option B — Create the practice files yourself
 
-Prefer to build from scratch? Run the commands below to create an equivalent set of files:
+Prefer to build from scratch? This is great extra practice with the commands you're about to learn. Run the commands below:
 
 ```bash
 # Create and enter a practice folder
@@ -74,7 +76,7 @@ This file is here so you can try out cat, head, tail, less and grep.
 Line 1: The quick brown fox jumps over the lazy dog.
 Line 2: Hello, CLI learner!
 Line 3: Learning the terminal is a superpower.
-Line 4: TODO: practise grep on this file.
+Line 4: TODO: practice grep on this file.
 Line 5: Every expert was once a beginner.
 Line 6: Ctrl+C cancels a running command.
 Line 7: Tab auto-completes file names.
@@ -98,6 +100,15 @@ EOF
 echo "Hello, CLI learner! This file is great for grep and cp." > file.txt
 echo "TODO: rename this file using mv." > old-name.txt
 echo "Copy me with: cp original.txt copy.txt" > original.txt
+
+# Notes file with TODOs (for cat and grep -n "TODO")
+cat > notes.txt << 'EOF'
+These are your course notes.
+
+TODO: review navigation commands (cd, ls, pwd).
+TODO: practice grep -n "TODO" notes.txt.
+TODO: add your own notes as you learn.
+EOF
 
 # Source files with functions and TODOs (for grep -r and find)
 cat > src/app.js << 'EOF'
@@ -229,7 +240,7 @@ echo "More content" >> README.md     # append to existing file
 
 ## Viewing File Contents
 
-> 💡 **Using practice files?** Make sure you're inside the practice folder (`cd ~/cli-starter/practice` or `cd ~/cli-practice`) before running the examples below.
+> 💡 **Using practice files?** Make sure you're inside the practice folder (`cd ~/cli-practice`) before running the examples below.
 
 ### `cat` — Print File Contents
 
@@ -292,9 +303,9 @@ rm -rf dist/                 # force delete without confirmation prompts
 > 💡 **Using the practice folder?** If you delete a practice file by accident, reset with:
 > ```bash
 > cd ~
-> rm -rf cli-starter
-> git clone https://github.com/ZEZE1020/cli-starter.git
-> cd cli-starter/practice
+> rm -rf cli-practice
+> npx degit ZEZE1020/cli-starter/practice cli-practice
+> cd cli-practice
 > ```
 
 ---
