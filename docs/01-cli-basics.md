@@ -11,6 +11,21 @@ nav_order: 2
 
 ---
 
+## 🛠️ Before You Begin
+
+Make sure you have the following ready before starting this lesson:
+
+| What you need | Where to get it |
+|---------------|-----------------|
+| **Terminal** *(Mac)* | Built-in. Press **⌘ Space**, type *Terminal*, press **Return**. |
+| **Git Bash** *(Windows)* | Download and install **Git for Windows** from **[gitforwindows.org ↗](https://gitforwindows.org/)**, which bundles Git Bash. |
+| **GitHub account** *(for later lessons)* | Create a free account at **[github.com/signup ↗](https://github.com/signup)**. |
+| **Node.js & npm** *(for Lesson 3+)* | Download the LTS release from **[nodejs.org/en/download ↗](https://nodejs.org/en/download/)**. |
+
+> 💡 **Windows users:** This course uses **Git Bash**, not Command Prompt (`cmd`) or PowerShell. Make sure Git Bash is installed before continuing.
+
+---
+
 ## What is the CLI?
 
 The **Command Line Interface (CLI)** — also called the *terminal*, *shell*, or *command prompt* — lets you control your computer entirely with text commands. Instead of clicking icons you type instructions and the computer responds.
@@ -40,7 +55,7 @@ Why bother?
 
 ### 🪟 Windows — Git Bash
 
-1. Install **Git for Windows** from [gitforwindows.org](https://gitforwindows.org/) if you haven't already
+1. Install **Git for Windows** from **[gitforwindows.org ↗](https://gitforwindows.org/)** if you haven't already — this installs both Git and Git Bash.
 2. Search for **Git Bash** in the Start menu and open it
 3. You'll see a window with a `$` prompt — identical to Mac Terminal for most commands!
 

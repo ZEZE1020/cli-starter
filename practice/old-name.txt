@@ -1,0 +1,7 @@
+This file has the "old" name.
+
+Rename it with:
+  mv old-name.txt new-name.txt
+
+After renaming, old-name.txt will no longer exist here.
+Re-clone the practice folder to reset.

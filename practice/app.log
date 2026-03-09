@@ -1,0 +1,30 @@
+2026-03-01 08:00:12 INFO  Server started on port 3000
+2026-03-01 08:00:13 INFO  Connected to database
+2026-03-01 08:00:15 INFO  Loading configuration from config.json
+2026-03-01 08:01:02 INFO  GET /api/users 200 OK (12ms)
+2026-03-01 08:01:05 INFO  GET /api/products 200 OK (8ms)
+2026-03-01 08:01:10 WARN  Slow query detected: getUserById took 520ms
+2026-03-01 08:01:11 INFO  POST /api/users 201 Created (34ms)
+2026-03-01 08:01:20 ERROR Failed to send email: SMTP connection refused
+2026-03-01 08:01:21 INFO  Retrying email delivery (attempt 1/3)
+2026-03-01 08:01:26 INFO  Retrying email delivery (attempt 2/3)
+2026-03-01 08:01:31 INFO  Retrying email delivery (attempt 3/3)
+2026-03-01 08:01:31 ERROR Email delivery failed after 3 attempts
+2026-03-01 08:02:00 INFO  GET /api/orders 200 OK (22ms)
+2026-03-01 08:02:05 WARN  Memory usage at 78% — consider scaling
+2026-03-01 08:02:10 INFO  POST /api/orders 201 Created (45ms)
+2026-03-01 08:02:15 INFO  DELETE /api/sessions/abc123 204 No Content (5ms)
+2026-03-01 08:03:00 INFO  Scheduled job "cleanup-expired-tokens" started
+2026-03-01 08:03:02 INFO  Scheduled job "cleanup-expired-tokens" completed — 42 tokens removed
+2026-03-01 08:03:30 ERROR Database connection lost: timeout after 30s
+2026-03-01 08:03:31 INFO  Attempting database reconnect (1/5)
+2026-03-01 08:03:36 INFO  Attempting database reconnect (2/5)
+2026-03-01 08:03:37 INFO  Database reconnected successfully
+2026-03-01 08:04:00 INFO  GET /api/users 200 OK (9ms)
+2026-03-01 08:04:10 INFO  GET /health 200 OK (1ms)
+2026-03-01 08:04:20 WARN  API rate limit reached for IP 192.168.1.42
+2026-03-01 08:04:21 INFO  GET /api/products 200 OK (11ms)
+2026-03-01 08:05:00 INFO  Cache cleared successfully
+2026-03-01 08:05:05 INFO  POST /api/login 200 OK (88ms)
+2026-03-01 08:05:10 INFO  POST /api/logout 200 OK (4ms)
+2026-03-01 08:06:00 ERROR Unhandled exception in /api/reports: TypeError: Cannot read property 'data' of undefined

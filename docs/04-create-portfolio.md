@@ -11,6 +11,20 @@ nav_order: 5
 
 ---
 
+## 🛠️ Prerequisites for This Lesson
+
+You need all of the following before starting:
+
+| Tool | Why | Install / sign-up |
+|------|-----|-------------------|
+| **Git** | Version control & pushing code | [git-scm.com/downloads ↗](https://git-scm.com/downloads) · Windows: [gitforwindows.org ↗](https://gitforwindows.org/) |
+| **Node.js & npm** | Running npm scripts and optional `gh-pages` deployment | [nodejs.org/en/download ↗](https://nodejs.org/en/download/) (LTS) |
+| **GitHub account** | Hosting on GitHub Pages | [github.com/signup ↗](https://github.com/signup) |
+
+> 💡 Complete **Lessons 1–3** first — this lesson builds on those skills.
+
+---
+
 ## What You'll Build
 
 A clean, professional portfolio that includes:

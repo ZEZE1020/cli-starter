@@ -17,10 +17,12 @@ A beginner-friendly, step-by-step CLI course for **Mac** and **Windows (Git Bash
 
 ## Prerequisites
 
-- **Mac** — Terminal (built-in)
-- **Windows** — [Git Bash](https://gitforwindows.org/)
-- **Node.js / npm** — [nodejs.org](https://nodejs.org) (LTS)
-- **GitHub account** — [github.com](https://github.com)
+| Tool | Download |
+|------|----------|
+| **Terminal / Git Bash** | Mac: built-in · Windows: [Git for Windows](https://gitforwindows.org/) (includes Git Bash) |
+| **Git** | Mac: via Xcode CLI tools · Windows: [Git for Windows](https://gitforwindows.org/) · All platforms: [git-scm.com/downloads](https://git-scm.com/downloads) |
+| **Node.js & npm** | [nodejs.org/en/download](https://nodejs.org/en/download/) (LTS) |
+| **GitHub account** | [github.com/signup](https://github.com/signup) |
 
 ## Local Development
 

@@ -1,0 +1,17 @@
+Hello, CLI learner!
+
+This is a plain text file you can use to practice reading and searching.
+
+Some keywords to search for:
+- hello
+- error
+- TODO: add more examples here
+- The quick brown fox jumps over the lazy dog.
+
+Try running:
+  cat file.txt
+  grep "hello" file.txt
+  grep -i "TODO" file.txt
+  grep -n "fox" file.txt
+
+Happy practicing!
