@@ -1,7 +1,7 @@
 title: CLI Starter Course
 description: >-
-  A beginner-friendly guide to the Command Line Interface for Mac and Windows
-  (Git Bash) users — learn the basics, bootstrap a project, and build your portfolio.
+  A beginner-friendly guide to the Command Line Interface for Mac, Windows
+  (Git Bash), and Android (Termux) users — learn the basics, bootstrap a project, and build your portfolio.
 baseurl: "/cli-starter"
 url: "https://zeze1020.github.io"
 
@@ -13,6 +13,7 @@ header_pages:
   - docs/02-navigation-and-files.md
   - docs/03-bootstrap-project.md
   - docs/04-create-portfolio.md
+  - docs/05-android-termux.md
 
 minima:
   skin: dark

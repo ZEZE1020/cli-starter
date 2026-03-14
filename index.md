@@ -6,7 +6,7 @@ nav_order: 1
 
 # 🖥️ CLI Starter Course
 
-Welcome! This course will take you from **zero CLI experience** to being comfortable in the terminal — on both **Mac** (Terminal / zsh) and **Windows** (Git Bash).
+Welcome! This course will take you from **zero CLI experience** to being comfortable in the terminal — on **Mac** (Terminal / zsh), **Windows** (Git Bash), or an **Android tablet** (Termux).
 
 By the end you will be able to:
 
@@ -25,6 +25,7 @@ By the end you will be able to:
 | 2 | [Navigation & File Operations](docs/02-navigation-and-files) | `cd`, `ls/dir`, `mkdir`, `touch/echo`, `cp`, `mv`, `rm` |
 | 3 | [Bootstrap a Project](docs/03-bootstrap-project) | `git init`, `npm init`, project structure best practices |
 | 4 | [Create Your Portfolio](docs/04-create-portfolio) | Build and deploy a personal site with GitHub Pages |
+| 📱 | [Android Tablet (Termux & Acode)](docs/05-android-termux) | Set up a full CLI environment on Android — no PC required |
 
 ---
 
@@ -51,14 +52,16 @@ By the end you will be able to:
 
 Before you start, make sure you have these tools installed:
 
-| Tool | Mac | Windows |
-|------|-----|---------|
-| **Terminal / Shell** | Built-in — search *Terminal* in Spotlight | Install **Git Bash** via [Git for Windows ↗](https://gitforwindows.org/) |
-| **Git** | Included with Xcode Command Line Tools (`git --version` to prompt install) | Included with [Git for Windows ↗](https://gitforwindows.org/) |
-| **Node.js & npm** | [Download LTS from nodejs.org ↗](https://nodejs.org/en/download/) | [Download LTS from nodejs.org ↗](https://nodejs.org/en/download/) |
-| **GitHub account** | [Sign up free at github.com ↗](https://github.com/signup) | [Sign up free at github.com ↗](https://github.com/signup) |
+| Tool | Mac | Windows | Android (Termux) |
+|------|-----|---------|------------------|
+| **Terminal / Shell** | Built-in — search *Terminal* in Spotlight | Install **Git Bash** via [Git for Windows ↗](https://gitforwindows.org/) | Install **Termux** from [F-Droid ↗](https://f-droid.org/) (not the Play Store) |
+| **Git** | Included with Xcode Command Line Tools (`git --version` to prompt install) | Included with [Git for Windows ↗](https://gitforwindows.org/) | `pkg install git` in Termux |
+| **Node.js & npm** | [Download LTS from nodejs.org ↗](https://nodejs.org/en/download/) | [Download LTS from nodejs.org ↗](https://nodejs.org/en/download/) | `pkg install nodejs` in Termux |
+| **GitHub account** | [Sign up free at github.com ↗](https://github.com/signup) | [Sign up free at github.com ↗](https://github.com/signup) | [Sign up free at github.com ↗](https://github.com/signup) |
 
 > 💡 **Not sure if something is already installed?** Open your terminal and run `git --version`, `node -v`, and `npm -v`. If a version number appears, you're good to go!
+
+> 📱 **On an Android tablet?** See the [Android Tablet (Termux & Acode)](docs/05-android-termux) setup guide for step-by-step instructions.
 
 ---
 
