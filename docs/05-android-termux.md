@@ -1,13 +1,13 @@
 ---
 layout: page
-title: "Android Tablet — Termux & ACodeX"
+title: "Android Tablet — Termux & Acode"
 nav_order: 6
 ---
 
 # Using This Course on an Android Tablet
 
 > **Time:** ~30 minutes setup  
-> **Goal:** Turn your Android tablet into a capable CLI learning environment using **Termux** (a full Linux terminal) and **ACodeX** (a touch-friendly code editor).
+> **Goal:** Turn your Android tablet into a capable CLI learning environment using **Termux** (a full Linux terminal) and **Acode** (a touch-friendly code editor).
 
 ---
 
@@ -20,6 +20,49 @@ You do **not** need a Mac or Windows PC to follow this course. A modern Android 
 | Android tablet or phone | Android 7.0 (Nougat) or newer |
 | Storage | ~500 MB free (for Termux + packages) |
 | Keyboard | On-screen keyboard works; a Bluetooth keyboard is highly recommended |
+
+---
+
+## How Termux Works
+
+Termux is **not** an emulator — it runs a real Linux environment directly on Android's Linux kernel. Here's a simplified view of the architecture:
+
+```
+┌─────────────────────────────────────────────────┐
+│                 Android Device                  │
+│                                                 │
+│  ┌──────────────────────┐  ┌─────────────────┐  │
+│  │     Termux App       │  │    Acode App    │  │
+│  │                      │  │   (code editor) │  │
+│  │  ┌────────────────┐  │  └────────┬────────┘  │
+│  │  │  Bash Shell    │  │           │           │
+│  │  │  (your prompt) │  │           │           │
+│  │  └───────┬────────┘  │           │           │
+│  │          │           │           │           │
+│  │  ┌───────▼────────┐  │  ┌────────▼────────┐  │
+│  │  │ pkg Packages   │  │  │ ~/storage/      │  │
+│  │  │ git, node, npm │  │  │ shared/         │  │
+│  │  │ nano, python   │  │  │ (shared files)  │  │
+│  │  └───────┬────────┘  │  └────────┬────────┘  │
+│  │          │           │           │           │
+│  │  ┌───────▼───────────┼───────────▼────────┐  │
+│  │  │ Termux Home Dir: ~/                    │  │
+│  │  │ /data/data/com.termux/files/home       │  │
+│  │  └────────────────────────────────────────┘  │
+│  └──────────────────────┘                       │
+│                                                 │
+│  ┌─────────────────────────────────────────┐    │
+│  │   Android Linux Kernel                  │    │
+│  │   (Termux runs natively — no emulation) │    │
+│  └─────────────────────────────────────────┘    │
+└─────────────────────────────────────────────────┘
+```
+
+**Key points:**
+
+- **Termux** provides a self-contained Linux file system under `/data/data/com.termux/files/`. Packages installed with `pkg` live here.
+- **Acode** is a separate Android app. It accesses your project files through Android's shared storage (accessed as `~/storage/shared/` in Termux, or via the system file picker in Acode), which Termux creates via `termux-setup-storage`.
+- Both apps talk to the same underlying Linux kernel — there's no virtual machine or performance penalty.
 
 ---
 
@@ -61,6 +104,20 @@ $ _
 
 Run these commands in Termux to update and install the tools needed for this course.
 
+### Understanding `pkg` — Termux's package manager
+
+On a regular Linux desktop you'd use `apt` (Debian/Ubuntu) or `dnf` (Fedora) to install software. Termux ships its own package manager called **`pkg`**.
+
+| Command | What it does |
+|---------|-------------|
+| `pkg update` | Refreshes the list of available packages from Termux's repositories (like `apt update`) |
+| `pkg upgrade` | Upgrades all installed packages to their latest versions (like `apt upgrade`) |
+| `pkg install <name>` | Downloads and installs a package (like `apt install <name>`) |
+| `pkg search <name>` | Searches for packages by name or keyword |
+| `pkg uninstall <name>` | Removes an installed package |
+
+> 💡 **Why `pkg` instead of `apt`?** `pkg` is a thin wrapper around `apt` that automatically runs `apt update` when needed and formats output for the smaller mobile screen. You *can* use `apt` directly, but `pkg` is the recommended way in Termux.
+
 ### Update the package list
 
 ```bash
@@ -78,9 +135,17 @@ pkg install git
 # Node.js and npm — project tooling (Lesson 3+)
 pkg install nodejs
 
-# A lightweight text editor (useful for editing files without ACodeX)
+# A lightweight text editor (useful for editing files without Acode)
 pkg install nano
 ```
+
+Here's what each tool does:
+
+| Package | Provides | Used in |
+|---------|----------|---------|
+| `git` | The Git version control system (`git init`, `git commit`, `git push`, etc.) | Lessons 3–4 |
+| `nodejs` | Node.js runtime **and** `npm` / `npx` (JavaScript package manager) | Lessons 2–4 |
+| `nano` | A simple terminal-based text editor — edit files without leaving Termux | All lessons |
 
 Verify everything installed correctly:
 
@@ -97,47 +162,67 @@ npm -v
 
 ### Grant Termux access to your tablet's storage
 
-This lets you open files from Termux in ACodeX (and vice versa).
+This lets you share files between Termux and other Android apps (like Acode).
 
 ```bash
 termux-setup-storage
 ```
 
-Tap **Allow** when Android asks for the permission. After this you can access your tablet's files at:
+Tap **Allow** when Android asks for the permission. This creates symlinks inside `~/storage/` that point to Android's shared folders:
 
 ```bash
 ls ~/storage/
 # downloads/  dcim/  music/  pictures/  shared/
 ```
 
-> 💡 Your Termux home folder (`~`) lives at `/data/data/com.termux/files/home` — separate from the main Android storage. For this course, work inside `~` (e.g., `~/projects/`) to avoid permission issues.
+| Path | Points to |
+|------|-----------|
+| `~/storage/shared/` | Your tablet's main internal storage (`/storage/emulated/0/`) |
+| `~/storage/downloads/` | The Downloads folder |
+| `~/storage/dcim/` | Camera photos |
+
+> 💡 **Where to keep your projects:** For this course, create a folder in shared storage so both Termux and Acode can access the same files:
+>
+> ```bash
+> mkdir -p ~/storage/shared/projects
+> ln -s ~/storage/shared/projects ~/projects
+> cd ~/projects
+> ```
+>
+> The symlink (`ln -s`) lets you type `cd ~/projects` in Termux while the actual files live in shared storage where Acode can see them.
 
 ---
 
-## Part 3 — Install ACodeX
+## Part 3 — Install Acode
 
-**ACodeX** is a free, open-source code editor built for Android. It understands many languages (HTML, CSS, JavaScript, Markdown, JSON), has syntax highlighting, and integrates with Termux through a shared terminal session.
+**Acode** is a free, open-source code editor built for Android. It understands many languages (HTML, CSS, JavaScript, Markdown, JSON), has syntax highlighting, and can open files from Termux's shared storage.
 
 ### Install from the Play Store or F-Droid
 
 | Source | Link |
 |--------|------|
-| **Google Play** | Search *ACodeX* in the Play Store |
-| **F-Droid** | Search *ACodeX* in F-Droid |
+| **Google Play** | Search *Acode* in the Play Store |
+| **F-Droid** | Search *Acode* in F-Droid |
 | **GitHub Releases** | [github.com/deadlyjack/Acode/releases ↗](https://github.com/deadlyjack/Acode/releases) |
 
-After installing, open ACodeX — you'll see a code editor similar to VS Code.
+After installing, open Acode — you'll see a code editor similar to VS Code.
 
-### Connect ACodeX to your Termux files
+### Connect Acode to your Termux project files
 
-1. In ACodeX, tap the **folder icon** in the sidebar.
-2. Tap **Add a storage** → **Local storage**.
-3. Navigate to the **Termux home folder**:
-   - Path: `Internal storage → Android → data → com.termux → files → home`
-   - Or grant ACodeX access via the Android file picker when prompted.
-4. Tap **Select** — your Termux home directory now appears in the ACodeX file tree.
+Because Android's scoped storage blocks direct access to Termux's internal directory on newer devices, we use the **shared storage** approach set up in Part 2:
 
-> 💡 You can now open any file you create in Termux directly in ACodeX for editing, and save it back with Termux.
+1. In Acode, tap the **folder icon** in the sidebar.
+2. Tap **Add a storage** → **Select folder**.
+3. Navigate to **Internal storage → projects** (the folder you created with `mkdir -p ~/storage/shared/projects`).
+4. Tap **Use this folder** → **Allow** to grant Acode access.
+
+Your project files now appear in Acode's file tree. Any edits you make in Acode are immediately visible in Termux (and vice versa) because both apps read/write to the same shared storage location.
+
+> 💡 If you skipped the symlink step in Part 2, go back and run:
+> ```bash
+> mkdir -p ~/storage/shared/projects
+> ln -s ~/storage/shared/projects ~/projects
+> ```
 
 ---
 
@@ -159,8 +244,14 @@ For GitHub pushes, create a **Personal Access Token** (PAT) since HTTPS password
 **Save credentials in Termux** so you don't re-enter the token every push:
 
 ```bash
+# Option A — Cache credentials in memory for 4 hours (safer)
+git config --global credential.helper 'cache --timeout=14400'
+
+# Option B — Store credentials permanently on disk
 git config --global credential.helper store
 ```
+
+> ⚠️ **Security note:** Option B (`store`) saves your token in **plaintext** in `~/.git-credentials`. This is convenient but means anyone with access to your device can read the token. Option A (`cache`) is safer — it keeps the token only in memory and automatically forgets it after the timeout (4 hours in the example above). For a personal tablet either option is usually fine, but prefer `cache` if you share the device.
 
 ---
 
@@ -172,7 +263,7 @@ All four lessons work on Android with Termux. The table below highlights any sma
 |--------|:-----------------:|-------|
 | [1 — CLI Basics](01-cli-basics) | ✅ | All commands (`pwd`, `whoami`, `echo`, `clear`) work identically in Termux |
 | [2 — Navigation & Files](02-navigation-and-files) | ✅ | Use `pkg install nodejs` to get `npx` for the practice-files download |
-| [3 — Bootstrap a Project](03-bootstrap-project) | ✅ | `git`, `npm init`, `npm install` all work; use nano or ACodeX to edit files |
+| [3 — Bootstrap a Project](03-bootstrap-project) | ✅ | `git`, `npm init`, `npm install` all work; use nano or Acode to edit files |
 | [4 — Create Your Portfolio](04-create-portfolio) | ✅ | Build the site locally; deploy to GitHub Pages from Termux with `git push` |
 
 ### Opening a text editor
@@ -186,9 +277,9 @@ nano .gitignore
 # Edit, then press Ctrl+X → Y → Enter to save
 ```
 
-**Option B — ACodeX (touch-friendly)**
+**Option B — Acode (touch-friendly)**
 
-Open the file from the ACodeX file tree (after connecting it to Termux storage above), edit it, then tap **Save** (`Ctrl+S` or the save icon).
+Open the file from the Acode file tree (after connecting it to Termux storage above), edit it, then tap **Save** (`Ctrl+S` or the save icon).
 
 ---
 
@@ -231,16 +322,29 @@ For the best experience, pair any Bluetooth keyboard with your tablet. All deskt
 
 ## Termux-Specific Commands
 
-A few commands behave slightly differently or are only available in Termux:
+A few commands are unique to Termux or behave slightly differently from a desktop Linux:
 
-| Task | Termux command | Notes |
-|------|---------------|-------|
-| Install a package | `pkg install <name>` | Wrapper around `apt`; preferred in Termux |
-| Search for a package | `pkg search <name>` | |
-| Update all packages | `pkg update && pkg upgrade` | Run periodically |
-| Access Android clipboard | `termux-clipboard-get` / `termux-clipboard-set` | Needs `pkg install termux-api` |
-| Open a URL in Android browser | `termux-open-url <url>` | Needs `pkg install termux-api` |
-| List running sessions | Swipe right in Termux | Opens the sessions sidebar |
+| Task | Termux command | Description |
+|------|---------------|-------------|
+| Install a package | `pkg install <name>` | Downloads and installs software. Wrapper around `apt` that auto-updates the package index. |
+| Search for a package | `pkg search <name>` | Finds available packages by name or keyword. |
+| Update all packages | `pkg update && pkg upgrade` | Refreshes the package list, then upgrades everything to the latest version. Run periodically. |
+| Set up shared storage | `termux-setup-storage` | Creates symlinks in `~/storage/` so Termux can read/write Android's shared folders. Run once. |
+| Access Android clipboard | `termux-clipboard-get` / `termux-clipboard-set` | Copy/paste between Termux and other apps. Requires `pkg install termux-api`. |
+| Open a URL in browser | `termux-open-url <url>` | Opens a link in your default Android browser. Requires `pkg install termux-api`. |
+| List running sessions | Swipe right in Termux | Opens the sessions sidebar — like browser tabs for terminals. |
+
+### Common commands compared: Termux vs Desktop Linux
+
+Most CLI commands work identically, but here are the key differences:
+
+| Action | Desktop Linux | Termux | Why different? |
+|--------|---------------|--------|----------------|
+| Install software | `sudo apt install git` | `pkg install git` | Termux has no `sudo` — you're already the admin of your Termux environment |
+| System root | `/` | `/data/data/com.termux/files/` | Termux is sandboxed inside its own app directory |
+| Home directory | `/home/username` | `/data/data/com.termux/files/home` | Same idea, just a different path |
+| Config files | `~/.bashrc` | `~/.bashrc` | ✅ Identical |
+| Run node/git/npm | `node`, `git`, `npm` | `node`, `git`, `npm` | ✅ Identical |
 
 ---
 
@@ -269,7 +373,7 @@ ls
 - [ ] Installed `git`, `nodejs`, and `nano` with `pkg install`
 - [ ] Ran `termux-setup-storage` and granted storage permission
 - [ ] Verified `git --version`, `node -v`, and `npm -v` all print version numbers
-- [ ] Installed **ACodeX** and connected it to the Termux home folder
+- [ ] Installed **Acode** and connected it to the Termux shared projects folder
 - [ ] Set up Git global config (`user.name` and `user.email`)
 - [ ] Configured the Termux extra-keys bar (or paired a Bluetooth keyboard)
 

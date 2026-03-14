@@ -25,7 +25,7 @@ By the end you will be able to:
 | 2 | [Navigation & File Operations](docs/02-navigation-and-files) | `cd`, `ls/dir`, `mkdir`, `touch/echo`, `cp`, `mv`, `rm` |
 | 3 | [Bootstrap a Project](docs/03-bootstrap-project) | `git init`, `npm init`, project structure best practices |
 | 4 | [Create Your Portfolio](docs/04-create-portfolio) | Build and deploy a personal site with GitHub Pages |
-| 📱 | [Android Tablet (Termux & ACodeX)](docs/05-android-termux) | Set up a full CLI environment on Android — no PC required |
+| 📱 | [Android Tablet (Termux & Acode)](docs/05-android-termux) | Set up a full CLI environment on Android — no PC required |
 
 ---
 
@@ -61,7 +61,7 @@ Before you start, make sure you have these tools installed:
 
 > 💡 **Not sure if something is already installed?** Open your terminal and run `git --version`, `node -v`, and `npm -v`. If a version number appears, you're good to go!
 
-> 📱 **On an Android tablet?** See the [Android Tablet (Termux & ACodeX)](docs/05-android-termux) setup guide for step-by-step instructions.
+> 📱 **On an Android tablet?** See the [Android Tablet (Termux & Acode)](docs/05-android-termux) setup guide for step-by-step instructions.
 
 ---
 
