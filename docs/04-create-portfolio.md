@@ -524,4 +524,4 @@ You've completed the CLI Starter Course! Here's what you've learned:
 
 ---
 
-[← Lesson 3: Bootstrap a Project](03-bootstrap-project) | [← Back to Home](../index)
+[← Lesson 3: Bootstrap a Project](03-bootstrap-project) | [← Back to Home](../index) | [📱 Android Tablet Setup →](05-android-termux)
