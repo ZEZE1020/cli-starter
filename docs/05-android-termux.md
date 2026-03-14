@@ -7,7 +7,7 @@ nav_order: 6
 # Using This Course on an Android Tablet
 
 > **Time:** ~30 minutes setup  
-> **Goal:** Turn your Android tablet into a capable CLI learning environment using **Termux** (a full Linux terminal) and **Acode** (a touch-friendly code editor).
+> **Goal:** Use your Android tablet as a learning environment using **Termux** (a full Linux terminal) and **Acode** (a touch-friendly code editor).
 
 ---
 
@@ -60,7 +60,7 @@ Termux is **not** an emulator — it runs a real Linux environment directly on A
 
 **Key points:**
 
-- **Termux** provides a self-contained Linux file system under `/data/data/com.termux/files/`. Packages installed with `pkg` live here.
+- **Termux** provides a self-contained [Linux](https://en.wikipedia.org/wiki/Linux) file system under `/data/data/com.termux/files/`. Packages installed with `pkg` live here.
 - **Acode** is a separate Android app. It accesses your project files through Android's shared storage (accessed as `~/storage/shared/` in Termux, or via the system file picker in Acode), which Termux creates via `termux-setup-storage`.
 - Both apps talk to the same underlying Linux kernel — there's no virtual machine or performance penalty.
 
@@ -209,7 +209,7 @@ After installing, open Acode — you'll see a code editor similar to VS Code.
 
 ### Connect Acode to your Termux project files
 
-Because Android's scoped storage blocks direct access to Termux's internal directory on newer devices, we use the **shared storage** approach set up in Part 2:
+Because Android's scoped storage blocks direct access to Termux's internal directory on newer devices, we use the [**shared storage**](https://developer.android.com/training/data-storage/shared) approach set up in Part 2:
 
 1. In Acode, tap the **folder icon** in the sidebar.
 2. Tap **Add a storage** → **Select folder**.
